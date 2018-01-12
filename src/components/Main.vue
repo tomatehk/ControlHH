@@ -1,16 +1,8 @@
 <template>
   <div>
     <el-container>
-      <el-header style="text-align: center; font-size: 12px">
-        <el-dropdown>
-          <i class="el-icon-setting white" style="margin-right: 15px"></i>
-          <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item>View</el-dropdown-item>
-            <el-dropdown-item>Add</el-dropdown-item>
-            <el-dropdown-item>Delete</el-dropdown-item>
-          </el-dropdown-menu>
-        </el-dropdown>
-        <span class="white">Opciones</span>
+      <el-header style="text-align: right; font-size: 20px; color: white" id="elheader">
+        <b><i class="el-icon-tickets"></i> ControlHH</b>
       </el-header>
     </el-container>
 
@@ -34,8 +26,8 @@
         </el-menu>
       </el-aside>
 
-      <el-container style="overflow: scroll" id="main">
-        <el-main>
+      <el-container>
+        <el-main :style="{overflow: 'scroll', height: height}">
           <el-card>
             <el-table
             :data="tableData"
@@ -67,11 +59,17 @@
 </template>
 
 <script>
-  var main = document.getElementById('main')
+  // height of the main
   export default {
     data() {
+      var getHeight = () => {
+        let height = window.innerHeight
+        alert(document.body.scrollTop)
+        return (height - 60) + 'px'
+      }
       return {
         name: 'Main',
+        height: getHeight(),
         tableData: [{
           date: '2016-05-03',
           name: 'Tom',
@@ -185,7 +183,7 @@
           zip: 'CA 90036',
           tag: 'Home'
         },
-         {
+        {
           date: '2016-05-01',
           name: 'Tom',
           state: 'California',
