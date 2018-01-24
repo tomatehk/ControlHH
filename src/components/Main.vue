@@ -1,11 +1,9 @@
 <template>
   <div>
-    <el-container>
-      <el-header style="text-align: right; font-size: 20px; color: white" id="elheader">
-        <b><i class="el-icon-tickets"></i> ControlHH</b>
-      </el-header>
-    </el-container>
-
+    <!-- main header -->
+    <main-header />
+    <!-- end main header -->
+    
     <el-container>
       <el-aside class="menu">
         <el-menu default-active="1" class="el-menu-vertical-demo">
@@ -29,46 +27,36 @@
       <el-container>
         <el-main :style="{overflow: 'scroll', height: height}">
           <el-card>
-            <el-table
-            :data="tableData"
-            style="width: 100%">
-            <el-table-column
-            type="index"
-            :index="indexMethod">
-          </el-table-column>
-          <el-table-column
-          prop="date"
-          label="Date"
-          width="180">
-        </el-table-column>
-        <el-table-column
-        prop="name"
-        label="Name"
-        width="180">
-      </el-table-column>
-      <el-table-column
-      prop="address"
-      label="Address">
-    </el-table-column>
-  </el-table>
-</el-card>
-</el-main>
-</el-container>
-</el-container>
-</div>
+            <el-table :data="tableData" style="width: 100%">
+              <el-table-column type="index" :index="indexMethod">
+              </el-table-column>
+              <el-table-column prop="date" label="Date" width="180">
+              </el-table-column>
+              <el-table-column prop="name" label="Name" width="180">
+              </el-table-column>
+              <el-table-column prop="address" label="Address">
+              </el-table-column>
+            </el-table>
+          </el-card>
+        </el-main>
+      </el-container>
+    </el-container>
+  </div>
 </template>
 
 <script>
-  // height of the main
+  import Header from '@/components/Header'
+
   export default {
     data() {
       var getHeight = () => {
         let height = window.innerHeight
-        alert(document.body.scrollTop)
         return (height - 60) + 'px'
       }
+
+      document.querySelector('body').style.background = '#F2F2F2'
+
       return {
-        name: 'Main',
         height: getHeight(),
         tableData: [{
           date: '2016-05-03',
@@ -196,18 +184,16 @@
     },
     methods: {
       indexMethod(index) {
-        return index * 2;
+        return index * 2
       }
+    },
+    components: {
+      'main-header': Header
     }
-  };
+  }
 </script>
 
 <style>
-.el-header {
-  background-color: #409EFF;
-  color: #333;
-  line-height: 60px;
-}
 
 .el-aside {
   color: #333;

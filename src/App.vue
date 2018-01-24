@@ -1,13 +1,9 @@
 <template>
   <div id="app" style="min-width: 500px">
-    <!-- router to login -->
-    <router-view name="login" />
-    <!-- end router to login -->
 
     <!-- roter to main -->
-    <!-- each template have a tag container -->
     <router-view />
-    <!-- end router to login -->
+    <!-- end router to main -->
 
     <!-- footer -->
     <el-container style="padding: 0em">
@@ -28,6 +24,7 @@
 }
 
 .footer-float {
+  z-index: 9999;
   position: fixed;
   bottom: 0;
   left: 0;
